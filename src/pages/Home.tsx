@@ -1,13 +1,32 @@
-import React from 'react'
 import { Card } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import ProductList from "@/components/ui/productList"
 import { SideBar } from "@/components/ui/sideBar"
 import { ShoppingCart, Store, Menu } from "lucide-react"
 import { useState } from 'react'
+import { Link } from "react-router-dom"
+import {
+    Dialog,
+    DialogContent,
+    DialogHeader,
+    DialogTitle,
+    DialogDescription,
+    DialogTrigger,
+} from "@/components/ui/dialog";
+
+
+
+
+
+
+
+
+
+
 
 const Home = () => {
     const [sidebarOpen, setSidebarOpen] = useState(false)
+    const [productModalOpen, setProductModalOpen] = useState(false);
 
     return (
         <div className="min-h-screen bg-background">
@@ -16,10 +35,10 @@ const Home = () => {
                 <div className={`${sidebarOpen ? 'translate-x-0' : '-translate-x-full'} lg:translate-x-0 fixed lg:relative z-30 transition-transform duration-300 ease-in-out`}>
                     <SideBar />
                 </div>
-                
+
                 {/* Overlay para móvil */}
                 {sidebarOpen && (
-                    <div 
+                    <div
                         className="fixed inset-0 bg-black/50 z-20 lg:hidden"
                         onClick={() => setSidebarOpen(false)}
                     />
@@ -57,7 +76,7 @@ const Home = () => {
                                         </div>
                                     </div>
                                 </Card>
-                                
+
                                 <Card className="p-4 hover:shadow-lg transition-shadow duration-200">
                                     <div className="flex items-center space-x-3">
                                         <div className="p-2 bg-green-100 rounded-lg">
@@ -69,7 +88,7 @@ const Home = () => {
                                         </div>
                                     </div>
                                 </Card>
-                                
+
                                 <Card className="p-4 hover:shadow-lg transition-shadow duration-200">
                                     <div className="flex items-center space-x-3">
                                         <div className="p-2 bg-purple-100 rounded-lg">
@@ -84,27 +103,30 @@ const Home = () => {
                             </div>
 
                             {/* Lista de productos */}
-                            <Card className="shadow-lg border-border bg-card">
-                                <div className="p-6">
-                                    <div className="flex items-center justify-between mb-6">
-                                        <h3 className="text-xl font-bold text-foreground">Productos Disponibles</h3>
-                                        <Button 
-                                            variant="outline" 
-                                            size="sm"
-                                            className="hover:scale-105 transition-transform duration-200"
-                                        >
-                                            Ver todo
-                                        </Button>
+                            <Link to='/product'>
+                                <Card className="shadow-lg border-border bg-card">
+                                    <div className="p-6">
+                                        <div className="flex items-center justify-between mb-6">
+                                            <h3 className="text-xl font-bold text-foreground">Productos Disponibles</h3>
+                                            <Button
+                                                variant="outline"
+                                                size="sm"
+                                                className="hover:scale-105 transition-transform duration-200"
+                                            >
+                                                Ver todo
+                                            </Button>
+                                        </div>
+
+                                        <div className="bg-muted/30 rounded-lg p-4">
+                                            <ProductList />
+                                        </div>
                                     </div>
-                                    
-                                    <div className="bg-muted/30 rounded-lg p-4">
-                                        <ProductList />
-                                    </div>
-                                </div>
-                            </Card>
+
+                                </Card>
+                            </Link>
                         </div>
                     </div>
-                                        <footer className="bg-card border-b border-border shadow-sm">
+                    <footer className="bg-card border-b border-border shadow-sm">
                         <div className="flex items-center justify-between p-4 lg:p-6">
                             <div className="flex items-center space-x-4">
                                 {/* Botón menú móvil */}
@@ -116,7 +138,7 @@ const Home = () => {
                                 >
                                     <Menu className="h-6 w-6" />
                                 </Button>
-                                
+
                                 <div className="flex items-center space-x-3">
                                     <div className="p-2 bg-emerald-700/20 rounded-lg">
                                         <Store className="h-6 w-6 text-emerald-700" />
@@ -127,10 +149,10 @@ const Home = () => {
                                     </div>
                                 </div>
                             </div>
-                            
+
                             {/* Carrito */}
-                            <Button 
-                                variant="outline" 
+                            <Button
+                                variant="outline"
                                 className="flex items-center space-x-2 shadow-lg hover:shadow-xl transition-all duration-200"
                             >
                                 <ShoppingCart className="h-5 w-5" />

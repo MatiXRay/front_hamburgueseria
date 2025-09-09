@@ -2,6 +2,9 @@ import { Button } from "@/components/ui/button"
 import { Card } from "@/components/ui/card"
 import { Plus } from "lucide-react"
 
+
+
+
 const products = [
     {
         id: 1,
@@ -42,14 +45,17 @@ export default function ProductList() {
         <div className="w-full">
             <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
                 {products.map((product) => (
-                    <Card key={product.id} className="group overflow-hidden border-2 border-border hover:border-primary/50 transition-all duration-200 hover:shadow-lg">
+                    <Card key={product.id} 
+                    className="cursor-pointer group overflow-hidden border-2 border-border hover:border-primary/50 transition-all duration-200 hover:shadow-lg">
                         <div className="relative">
                             <img
                                 alt={product.imageAlt}
                                 src={product.imageSrc}
-                                className=" aspect-square w-full object-cover group-hover:scale-105 transition-transform duration-300 "
+                                className=" aspect-square w-full object-cover group-hover:scale-105 transition-transform duration-300 hover:pointer"
                             />
                         </div>
+
+
 
                         <div className="p-4">
                             <div className="flex items-start justify-between mb-3">
