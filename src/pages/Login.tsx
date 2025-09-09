@@ -29,7 +29,7 @@ export default function HomePage() {
                         <div className="flex flex-col space-y-6 w-full max-w-md">
                             <Button
                                 size="lg"
-                                className="w-full text-xl py-8 bg-primary hover:bg-primary/90 text-primary-foreground font-semibold shadow-lg transition-all duration-200 hover:shadow-xl"
+                                className="cursor-pointer hover:scale-103 transition-all duration-200 w-full text-xl py-8 border-2 bg-emerald-950 border-neutral-900/50 text-primary text-white hover:bg-primary/90 hover:text-primary-foreground font-semibold shadow-lg transition-all duration-200 hover:shadow-xl "
                                 onClick={() => {
                                     console.log("Pedir sin asociarse clicked")
                                 }}
@@ -38,9 +38,9 @@ export default function HomePage() {
                             </Button>
 
                             <Button
-                                variant="outline"
+
                                 size="lg"
-                                className="w-full text-xl py-8 border-2 bg-emerald-950 border-neutral-900/50 text-primary text-white hover:bg-primary hover:text-primary-foreground font-semibold shadow-lg transition-all duration-200 hover:shadow-xl "
+                                className="cursor-pointer hover:scale-103 transition-all duration-200 w-full text-xl py-8 bg-primary/95 hover:bg-primary border-neutral-900/5 text-primary-foreground font-semibold shadow-lg transition-all duration-200 hover:shadow-xl"
                                 onClick={() => {
                                     console.log("Asociarse clicked")
                                 }}
@@ -52,11 +52,11 @@ export default function HomePage() {
 
                     {/* Sección QR - columna derecha */}
                     <div className="flex flex-col items-center justify-center lg:justify-start lg:pt-20">
-                        <Card className="p-4 w-75 bg-card shadow-xl border-2 border-border" >
+                        <Card className="p-4 w-75  shadow-xl border-2 border-border bg-neutral-100" >
                             <div className="flex flex-col items-center space-y-6">
                                 <h3 className="text-2xl font-bold text-foreground text-center">Asociar con QR</h3>
 
-                                <div className="bg-white p-4 rounded-lg shadow-inner">
+                                <div className="bg-neutral-100 p-4 rounded-lg shadow-inner">
                                     <img
                                         src={qr}
                                         alt="Código QR para asociarse"
