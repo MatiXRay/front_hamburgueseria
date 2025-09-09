@@ -1,89 +1,82 @@
+import { Button } from "@/components/ui/button"
+import { Card } from "@/components/ui/card"
+import { Plus } from "lucide-react"
+
 const products = [
     {
         id: 1,
-        name: 'Earthen Bottle',
+        name: 'Hamburguesa Clásica',
         href: '#',
-        price: '$48',
-        imageSrc: 'https://tailwindcss.com/plus-assets/img/ecommerce-images/category-page-04-image-card-01.jpg',
-        imageAlt: 'Tall slender porcelain bottle with natural clay textured body and cork stopper.',
+        price: '$10',
+        imageSrc: 'https://media.istockphoto.com/id/840902892/es/foto/hamburguesa-aislado-en-blanco.jpg?s=612x612&w=0&k=20&c=uQIMRE1GPy8nh_WiCmK70qg30fjUaxnStPLVR2KLJHU=',
+        imageAlt: 'Hamburguesa clásica con queso, lechuga y tomate',
     },
     {
         id: 2,
-        name: 'Nomad Tumbler',
+        name: 'Hamburguesa Doble',
         href: '#',
-        price: '$35',
-        imageSrc: 'https://tailwindcss.com/plus-assets/img/ecommerce-images/category-page-04-image-card-02.jpg',
-        imageAlt: 'Olive drab green insulated bottle with flared screw lid and flat top.',
+        price: '$15',
+        imageSrc: 'https://media.istockphoto.com/id/840902892/es/foto/hamburguesa-aislado-en-blanco.jpg?s=612x612&w=0&k=20&c=uQIMRE1GPy8nh_WiCmK70qg30fjUaxnStPLVR2KLJHU=',
+        imageAlt: 'Hamburguesa doble con queso y bacon',
     },
     {
         id: 3,
-        name: 'Focus Paper Refill',
+        name: 'Hamburguesa Veggie',
         href: '#',
-        price: '$89',
-        imageSrc: 'https://tailwindcss.com/plus-assets/img/ecommerce-images/category-page-04-image-card-03.jpg',
-        imageAlt: 'Person using a pen to cross a task off a productivity paper card.',
+        price: '$12',
+        imageSrc: 'https://media.istockphoto.com/id/840902892/es/foto/hamburguesa-aislado-en-blanco.jpg?s=612x612&w=0&k=20&c=uQIMRE1GPy8nh_WiCmK70qg30fjUaxnStPLVR2KLJHU=',
+        imageAlt: 'Hamburguesa vegetariana con lechuga y tomate',
     },
     {
         id: 4,
-        name: 'Machined Mechanical Pencil',
+        name: 'Hamburguesa BBQ',
         href: '#',
-        price: '$35',
-        imageSrc: 'https://tailwindcss.com/plus-assets/img/ecommerce-images/category-page-04-image-card-04.jpg',
-        imageAlt: 'Hand holding black machined steel mechanical pencil with brass tip and top.',
-    },
-    {
-        id: 5,
-        name: 'Focus Card Tray',
-        href: '#',
-        price: '$64',
-        imageSrc: 'https://tailwindcss.com/plus-assets/img/ecommerce-images/category-page-04-image-card-05.jpg',
-        imageAlt: 'Paper card sitting upright in walnut card holder on desk.',
-    },
-    {
-        id: 6,
-        name: 'Focus Multi-Pack',
-        href: '#',
-        price: '$39',
-        imageSrc: 'https://tailwindcss.com/plus-assets/img/ecommerce-images/category-page-04-image-card-06.jpg',
-        imageAlt: 'Stack of 3 small drab green cardboard paper card refill boxes with white text.',
-    },
-    {
-        id: 7,
-        name: 'Brass Scissors',
-        href: '#',
-        price: '$50',
-        imageSrc: 'https://tailwindcss.com/plus-assets/img/ecommerce-images/category-page-04-image-card-07.jpg',
-        imageAlt: 'Brass scissors with geometric design, black steel finger holes, and included upright brass stand.',
-    },
-    {
-        id: 8,
-        name: 'Focus Carry Pouch',
-        href: '#',
-        price: '$32',
-        imageSrc: 'https://tailwindcss.com/plus-assets/img/ecommerce-images/category-page-04-image-card-08.jpg',
-        imageAlt: 'Textured gray felt pouch for paper cards with snap button flap and elastic pen holder loop.',
+        price: '$14',
+        imageSrc: 'https://media.istockphoto.com/id/840902892/es/foto/hamburguesa-aislado-en-blanco.jpg?s=612x612&w=0&k=20&c=uQIMRE1GPy8nh_WiCmK70qg30fjUaxnStPLVR2KLJHU=',
+        imageAlt: 'Hamburguesa con salsa BBQ y cebolla caramelizada',
     },
 ]
 
-export default function Productlist() {
+export default function ProductList() {
     return (
-        <div className="bg-white">
-            <div className="mx-auto max-w-2xl px-4 py-16 sm:px-6 sm:py-24 lg:max-w-7xl lg:px-8">
-                <h2 className="sr-only">Products</h2>
-
-                <div className="grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 xl:gap-x-8">
-                    {products.map((product) => (
-                        <a key={product.id} href={product.href} className="group">
+        <div className="w-full">
+            <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+                {products.map((product) => (
+                    <Card key={product.id} className="group overflow-hidden border-2 border-border hover:border-primary/50 transition-all duration-200 hover:shadow-lg">
+                        <div className="relative">
                             <img
                                 alt={product.imageAlt}
                                 src={product.imageSrc}
-                                className="aspect-square w-full rounded-lg bg-gray-200 object-cover group-hover:opacity-75 xl:aspect-7/8"
+                                className=" aspect-square w-full object-cover group-hover:scale-105 transition-transform duration-300 "
                             />
-                            <h3 className="mt-4 text-sm text-gray-700">{product.name}</h3>
-                            <p className="mt-1 text-lg font-medium text-gray-900">{product.price}</p>
-                        </a>
-                    ))}
-                </div>
+                        </div>
+
+                        <div className="p-4">
+                            <div className="flex items-start justify-between mb-3">
+                                <div className="flex-1">
+                                    <h3 className="font-semibold text-foreground text-sm leading-tight mb-1">
+                                        {product.name}
+                                    </h3>
+                                    <p className="text-lg font-bold text-primary">
+                                        {product.price}
+                                    </p>
+                                </div>
+                            </div>
+
+                            <Button
+                                size="sm"
+                                className="w-full h-8 text-xs font-medium bg-emerald-700 hover:bg-emerald-800 transition-all duration-200 hover:scale-105 shadow-md hover:shadow-lg"
+                                onClick={(e) => {
+                                    e.preventDefault()
+                                    console.log(`Agregado al carrito: ${product.name}`)
+                                }}
+                            >
+                                <Plus className="h-3 w-3 mr-1" />
+                                Agregar
+                            </Button>
+                        </div>
+                    </Card>
+                ))}
             </div>
         </div>
     )

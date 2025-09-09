@@ -2,9 +2,10 @@
 
 import { Button } from "@/components/ui/button"
 import { Card } from "@/components/ui/card"
-import logo from "../assets/logo_mcraulo.svg"
-import qr from "../assets/qr-code-example.jpg"
+import logo from "@/assets/logo_mcraulo.svg"
+import qr from "@/assets/qr-code-example.jpg"
 import { QrCode } from "lucide-react"
+import { Link } from "react-router-dom"
 
 export default function HomePage() {
     return (
@@ -27,20 +28,25 @@ export default function HomePage() {
                         </div>
                         {/* Botones principales */}
                         <div className="flex flex-col space-y-6 w-full max-w-md">
-                            <Button
-                                size="lg"
-                                className="cursor-pointer hover:scale-103 transition-all duration-200 w-full text-xl py-8 border-2 bg-emerald-950 border-neutral-900/50 text-primary text-white hover:bg-primary/90 hover:text-primary-foreground font-semibold shadow-lg transition-all duration-200 hover:shadow-xl "
-                                onClick={() => {
-                                    console.log("Pedir sin asociarse clicked")
-                                }}
-                            >
-                                🍔 Pedir sin asociarse
-                            </Button>
+                            <Link to="/home">
+                                <Button
+                                    size="lg"
+
+                                    className="cursor-pointer hover:scale-103 transition-all duration-200 w-full text-xl py-8 border-2 bg-neutral-100 border-stone-800 text-stone-900 hover:bg-primary/90 hover:text-primary-foreground font-semibold shadow-lg transition-all duration-200 hover:shadow-xl "
+                                    onClick={() => {
+                                        console.log("Pedir sin asociarse clicked")
+                                    }}
+                                >
+
+                                    🍔 Pedir sin asociarse
+
+                                </Button>
+                            </Link>
 
                             <Button
 
                                 size="lg"
-                                className="cursor-pointer hover:scale-103 transition-all duration-200 w-full text-xl py-8 bg-primary/95 hover:bg-primary border-neutral-900/5 text-primary-foreground font-semibold shadow-lg transition-all duration-200 hover:shadow-xl"
+                                    className="cursor-pointer hover:scale-103 transition-all duration-200 w-full text-xl py-8 border-2 bg-neutral-100 border-stone-800 text-stone-900 hover:bg-primary/90 hover:text-primary-foreground font-semibold shadow-lg transition-all duration-200 hover:shadow-xl "
                                 onClick={() => {
                                     console.log("Asociarse clicked")
                                 }}

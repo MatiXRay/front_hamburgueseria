@@ -6,8 +6,10 @@ import Home from './pages/Home'
 const App = () => {
   return (
     <div className="min-h-screen bg-emerald-900">
-      <Login></Login>
-      <Home></Home>
+      <Routes>
+        <Route path='/' element={<Login />} />
+        <Route path='/home' element={<Home />} />
+      </Routes>
     </div>
   )
 }

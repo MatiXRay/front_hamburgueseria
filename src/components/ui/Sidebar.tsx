@@ -3,6 +3,7 @@
 import { useState } from "react"
 import { Button } from "@/components/ui/button"
 import { cn } from "@/lib/utils"
+import logo from "@/assets/logo_mcraulo.svg"
 
 // Iconos SVG para cada categoría
 const HamburgerIcon = () => (
@@ -42,15 +43,15 @@ const ExtrasIcon = () => (
 )
 
 const UserIcon = () => (
-    <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
-        <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z" />
-    </svg>
+    <img
+        src="https://pbs.twimg.com/profile_images/1505286562895982594/_el7rYSf_400x400.jpg"
+        alt="Usuario"
+        className="w-10 h-10 rounded-full object-cover"
+    />
 )
 
 const LogoIcon = () => (
-    <svg className="w-10 h-10" fill="currentColor" viewBox="0 0 24 24">
-        <path d="M22 13h-20c-.552 0-1-.447-1-1s.448-1 1-1h20c.552 0 1 .447 1 1s-.448 1-1 1zm0-4h-20c-.552 0-1-.447-1-1s.448-1 1-1h20c.552 0 1 .447 1 1s-.448 1-1 1zm0 8h-20c-.552 0-1-.447-1-1s.448-1 1-1h20c.552 0 1 .447 1 1s-.448 1-1 1z" />
-    </svg>
+    <img className="scale-130" src={logo} alt="logo mcraulo" />
 )
 
 const categories = [
@@ -100,20 +101,19 @@ export function SideBar() {
             <div className="p-6 border-b border-emerald-800">
                 {/* Logo */}
                 <div className="flex items-center justify-center mb-4">
-                    <div className="bg-emerald-700 p-3 rounded-full">
+                    <div className="bg-emerald-800 p-6 rounded-full">
                         <LogoIcon />
                     </div>
                 </div>
-                <h1 className="text-lg font-bold text-center mb-4">Burger Palace</h1>
 
                 {/* Usuario */}
                 <div className="flex items-center gap-3 bg-emerald-800 p-3 rounded-lg">
-                    <div className="bg-emerald-600 p-2 rounded-full">
+                    <div className="bg-emerald-600 p-0.5 rounded-full">
                         <UserIcon />
                     </div>
                     <div>
-                        <p className="font-medium text-sm">María González</p>
-                        <p className="text-xs text-emerald-200">Cajera</p>
+                        <p className="font-medium text-sm">Momo Benavidez</p>
+                        <p className="text-xs text-emerald-200">Socio</p>
                     </div>
                 </div>
             </div>
