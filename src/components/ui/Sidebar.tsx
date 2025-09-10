@@ -59,38 +59,18 @@ const categories = [
         id: "hamburguesas",
         name: "Hamburguesas",
         icon: HamburgerIcon,
-        color: "bg-gray-600 hover:bg-gray-700",
     },
     {
         id: "papas",
         name: "Papas",
         icon: FriesIcon,
-        color: "bg-gray-600 hover:bg-gray-700",
     },
     {
         id: "bebidas",
         name: "Bebidas",
         icon: DrinkIcon,
-        color: "bg-gray-600 hover:bg-gray-700",
     },
-    {
-        id: "combos",
-        name: "Combos",
-        icon: ComboIcon,
-        color: "bg-gray-600 hover:bg-gray-700",
-    },
-    {
-        id: "postres",
-        name: "Postres",
-        icon: DessertIcon,
-        color: "bg-gray-600 hover:bg-gray-700",
-    },
-    {
-        id: "extras",
-        name: "Extras",
-        icon: ExtrasIcon,
-        color: "bg-gray-600 hover:bg-gray-700",
-    },
+
 ]
 
 export function SideBar() {
@@ -119,7 +99,7 @@ export function SideBar() {
             </div>
 
             {/* Header */}
-            <div className="p-4 border-b border-emerald-800">
+            <div className="p-4 border-b border-emerald-800 bg-red-950" >
                 <h2 className="text-lg font-semibold text-center">Menú</h2>
                 <p className="text-sm text-emerald-200 text-center mt-1">Selecciona una categoría</p>
             </div>
@@ -135,13 +115,8 @@ export function SideBar() {
                             key={category.id}
                             onClick={() => setActiveCategory(category.id)}
                             className={cn(
-                                "w-full h-20 flex flex-col items-center justify-center gap-2 text-white font-semibold transition-all duration-200 transform hover:scale-105",
-                                isActive
-                                    ? `${category.color} ring-2 ring-white ring-opacity-50 scale-105`
-                                    : `${category.color} hover:shadow-lg`,
-                                "rounded-xl",
+                                "bg-white hover:bg-red-900 hover:text-white cursor-pointer w-full h-20 flex flex-col items-center justify-center gap-2 text-stone-900 font-semibold transition-all duration-200 transform hover:scale-105",
                             )}
-                            variant="ghost"
                         >
                             <IconComponent />
                             <span className="text-sm">{category.name}</span>

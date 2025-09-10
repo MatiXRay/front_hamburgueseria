@@ -2,7 +2,14 @@ import { Button } from "@/components/ui/button"
 import { Card } from "@/components/ui/card"
 import { Plus } from "lucide-react"
 
-
+export interface Product {   // 👈 ahora exportada
+    id: number
+    name: string
+    href: string
+    price: string
+    imageSrc: string
+    imageAlt: string
+}
 
 
 const products = [
@@ -40,13 +47,21 @@ const products = [
     },
 ]
 
-export default function ProductList() {
+export default function ProductList({ onProductClick }: { onProductClick?: (product: any) => void }) {
     return (
         <div className="w-full">
             <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
                 {products.map((product) => (
-                    <Card key={product.id} 
-                    className="cursor-pointer group overflow-hidden border-2 border-border hover:border-primary/50 transition-all duration-200 hover:shadow-lg">
+                    <Card
+                        key={product.id}
+                        className="cursor-pointer group overflow-hidden border-2 border-border hover:border-primary/50 transition-all duration-200 hover:shadow-lg"
+                        onClick={() => {
+                            console.log(`Producto clickeado: ${product.name}`) // 👉 acá se loguea
+                            onProductClick?.(product) // 👉 si pasás callback desde el padre
+                        }}
+
+                    // 👉 pasa el producto clickeado
+                    >
                         <div className="relative">
                             <img
                                 alt={product.imageAlt}
@@ -72,10 +87,6 @@ export default function ProductList() {
                             <Button
                                 size="sm"
                                 className="w-full h-8 text-xs font-medium bg-emerald-700 hover:bg-emerald-800 transition-all duration-200 hover:scale-105 shadow-md hover:shadow-lg"
-                                onClick={(e) => {
-                                    e.preventDefault()
-                                    console.log(`Agregado al carrito: ${product.name}`)
-                                }}
                             >
                                 <Plus className="h-3 w-3 mr-1" />
                                 Agregar
@@ -87,3 +98,4 @@ export default function ProductList() {
         </div>
     )
 }
+

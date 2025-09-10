@@ -5,6 +5,8 @@ import { SideBar } from "@/components/ui/sideBar"
 import { ShoppingCart, Store, Menu } from "lucide-react"
 import { useState } from 'react'
 import { Link } from "react-router-dom"
+import type { Product } from "@/components/ui/productList"
+
 import {
     Dialog,
     DialogContent,
@@ -27,9 +29,13 @@ import {
 const Home = () => {
     const [sidebarOpen, setSidebarOpen] = useState(false)
     const [productModalOpen, setProductModalOpen] = useState(false);
+    const [selectedProduct, setSelectedProduct] = useState<Product | null>(null)
+
+
+
 
     return (
-        <div className="min-h-screen bg-background">
+        <div className={`flex-1 flex flex-col overflow-hidden transition-all duration-300 ${productModalOpen ? 'blur-xs' : ''}`}>
             <div className="flex h-screen">
                 {/* Sidebar */}
                 <div className={`${sidebarOpen ? 'translate-x-0' : '-translate-x-full'} lg:translate-x-0 fixed lg:relative z-30 transition-transform duration-300 ease-in-out`}>
@@ -51,7 +57,8 @@ const Home = () => {
                     <div className="flex-1 p-4 lg:p-6 overflow-auto">
                         <div className="max-w-7xl mx-auto space-y-6">
                             {/* Tarjeta de bienvenida */}
-                            <Card className="p-6 bg-gradient-to-r from-emerald-50 to-emerald-100 border-emerald-200 shadow-lg">
+                            <Card
+                                className="p-6 bg-gradient-to-r from-emerald-50 to-emerald-100 border-emerald-200 shadow-lg">
                                 <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between space-y-4 sm:space-y-0">
                                     <div>
                                         <h2 className="text-2xl font-bold text-emerald-900 mb-2">¡Bienvenido al sistema!</h2>
@@ -103,29 +110,86 @@ const Home = () => {
                             </div>
 
                             {/* Lista de productos */}
-                            <Link to='/product'>
-                                <Card className="shadow-lg border-border bg-card">
-                                    <div className="p-6">
-                                        <div className="flex items-center justify-between mb-6">
-                                            <h3 className="text-xl font-bold text-foreground">Productos Disponibles</h3>
-                                            <Button
-                                                variant="outline"
-                                                size="sm"
-                                                className="hover:scale-105 transition-transform duration-200"
-                                            >
-                                                Ver todo
-                                            </Button>
-                                        </div>
-
-                                        <div className="bg-muted/30 rounded-lg p-4">
-                                            <ProductList />
-                                        </div>
+                            {/* Nota: e.stopPropagation() evita que se cierre el modal si haces click dentro del botón. */}
+                            <Card
+                                className="shadow-lg border-border bg-card"
+                                onClick={() => setProductModalOpen(true)}
+                            >
+                                <div className="p-6">
+                                    <div className="flex items-center justify-between mb-6">
+                                        <h3 className="text-xl font-bold text-foreground">Productos Disponibles</h3>
+                                        <Button
+                                            variant="outline"
+                                            size="sm"
+                                            className="hover:scale-105 transition-transform duration-200"
+                                            onClick={(e) => { e.stopPropagation(); setProductModalOpen(true); }}
+                                        >
+                                            Ver todo
+                                        </Button>
                                     </div>
 
-                                </Card>
-                            </Link>
+                                    <div className="bg-muted/30 rounded-lg p-4">
+                                        <ProductList
+                                            onProductClick={(product) => {
+                                                setSelectedProduct(product);
+                                                setProductModalOpen(true);
+                                            }}
+                                        />
+
+                                    </div>
+                                </div>
+
+                            </Card>
+
                         </div>
                     </div>
+
+                    <Dialog open={productModalOpen} onOpenChange={setProductModalOpen}>
+                        <DialogContent className="sm:max-w-md bg-white/90 backdrop-blur-md shadow-xl rounded-lg">
+                            <DialogHeader>
+                                <DialogTitle>
+                                    {selectedProduct ? selectedProduct.name : "Producto"}
+                                </DialogTitle>
+                                <DialogDescription>
+                                    {selectedProduct
+                                        ? `Precio: ${selectedProduct.price}`
+                                        : "Selecciona un producto"}
+                                </DialogDescription>
+                            </DialogHeader>
+
+
+                            {/* Imagen del producto */}
+                            {selectedProduct && (
+                                <div className="mt-4">
+                                    <img
+                                        src={selectedProduct.imageSrc}
+                                        alt={selectedProduct.imageAlt}
+                                        className="w-full rounded-md shadow-md"
+                                    />
+                                    <p className="text-sm text-muted-foreground mt-2">
+                                        {selectedProduct.imageAlt}
+                                    </p>
+                                </div>
+                            )}
+
+
+
+
+                            <div className="mt-4">
+                                {selectedProduct && (
+                                    <div>
+                                        <p className="text-muted-foreground">
+                                            Información detallada del producto.
+                                        </p>
+                                        <Button className="mt-4 w-full">Agregar al carrito</Button>
+                                    </div>
+                                )}
+                                <div className="mt-6 flex justify-end">
+                                </div>
+                            </div>
+                        </DialogContent>
+                    </Dialog>
+
                     <footer className="bg-card border-b border-border shadow-sm">
                         <div className="flex items-center justify-between p-4 lg:p-6">
                             <div className="flex items-center space-x-4">
